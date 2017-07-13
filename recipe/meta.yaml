@@ -27,6 +27,12 @@ build:
     - vc{{ VC_VERSION }}   # [win]
 
 requirements:
+  host:
+    - {{ compiler('c') }}
+    - {{ cdt('xorg-x11-proto-devel') }}
+    - {{ cdt('libx11-devel') }}
+    - {{ cdt('libxcb') }}
+    - {{ cdt('libxau') }}
   build:
     - curl           # [win]
     - 7za            # [win]
