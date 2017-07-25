@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IFS='.' read -a VER_ARR <<< ${PKG_VERSION}
+IFS="." read -a VER_ARR <<<"${PKG_VERSION}"
 
 ARCH_FLAG=""
 if [[ ${ARCH} == 64 ]]; then
