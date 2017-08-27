@@ -12,7 +12,7 @@ pushd tcl${PKG_VERSION}/unix
   ./configure  --prefix="${PREFIX}"  \
                --host=${HOST}        \
                ${ARCH_FLAG}
-  make
+  make -j${CPU_COUNT} ${VERBOSE_AT}
   make install
 popd
 
@@ -23,7 +23,7 @@ pushd tk${PKG_VERSION}/unix
               --with-tcl="${PREFIX}"/lib  \
               --enable-aqua=yes           \
               ${ARCH_FLAG}
-  make
+  make -j${CPU_COUNT} ${VERBOSE_AT}
   make install
 popd
 
