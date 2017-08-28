@@ -29,16 +29,16 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ cdt('xorg-x11-proto-devel') }}
-    - {{ cdt('libx11-devel') }}
-    - {{ cdt('libxcb') }}
-    - {{ cdt('libxau') }}
+    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
+    - {{ cdt('libx11-devel') }}          # [linux]
+    - {{ cdt('libxcb') }}                # [linux]
+    - {{ cdt('libxau') }}                # [linux]
   host:
-    - curl           # [win]
-    - 7za            # [win]
-    - vc {{ VC_VERSION }}  # [win]
+    - curl                               # [win]
+    - 7za                                # [win]
+    - vc {{ VC_VERSION }}                # [win]
   run:
-    - vc {{ VC_VERSION }}  # [win]
+    - vc {{ VC_VERSION }}                # [win]
 
 test:
 
