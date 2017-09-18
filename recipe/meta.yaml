@@ -17,16 +17,6 @@ source:
 
 build:
   number: 1
-  detect_binary_files_with_prefix: true
-
-{% if VC_VERSION == "" %}
-  skip: true               # [win]
-{% elif VC_VERSION != "" %}
-  skip: true               # [unix]
-{% endif %}
-
-  features:
-    - vc{{ VC_VERSION }}   # [win]
 
 requirements:
   build:
@@ -35,12 +25,6 @@ requirements:
     - {{ cdt('libx11-devel') }}          # [linux]
     - {{ cdt('libxcb') }}                # [linux]
     - {{ cdt('libxau') }}                # [linux]
-  host:
-    - curl                               # [win]
-    - 7za                                # [win]
-    - vc {{ VC_VERSION }}                # [win]
-  run:
-    - vc {{ VC_VERSION }}                # [win]
 
 test:
 
