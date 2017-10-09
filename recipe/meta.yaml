@@ -1,8 +1,6 @@
 {% set version = "8.6.7" %}
 {% set maj_min = ".".join(version.split(".")[:2]) %}
 
-{% set VC_VERSION = os.environ.get("VC_VERSION", "")|string %}
-
 package:
   name: tk
   version: {{ version }}
@@ -16,7 +14,10 @@ source:
     sha256: 061de2a354f9b7c7d04de3984c90c9bc6dd3a1b8377bb45509f1ad8a8d6337aa
 
 build:
-  number: 1
+  number: 2
+  run_exports:
+    # pin to major.minor because library names have that info in them
+    - {{ pin_subpackage('tk', max_pin='x.x') }}
 
 requirements:
   build:
