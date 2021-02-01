@@ -3,7 +3,7 @@
 IFS="." read -a VER_ARR <<<"${PKG_VERSION}"
 
 ARCH_FLAG=""
-if [[ ${ARCH} == 64 ]]; then
+if [[ ${ARCH} == 64 || ${ARCH} == s390x ]]; then
     ARCH_FLAG="--enable-64bit"
 fi
 
