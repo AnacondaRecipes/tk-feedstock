@@ -1,4 +1,4 @@
-{% set version = "8.6.10" %}
+{% set version = "8.7a3" %}
 {% set maj_min = ".".join(version.split(".")[:2]) %}
 
 package:
@@ -8,10 +8,10 @@ package:
 source:
   - url: https://downloads.sourceforge.net/tcl/tcl{{ version }}-src.tar.gz
     folder: tcl{{ version }}
-    sha256: 5196dbf6638e3df8d5c87b5815c8c2b758496eb6f0e41446596c9a4e638d87ed
+    sha256: 610e739f370ba1613530b31a5967b06eb4ecc271ee43ff2fcce60612549fb891
   - url: https://downloads.sourceforge.net/tcl/tk{{ version }}-src.tar.gz
     folder: tk{{ version }}
-    sha256: 63df418a859d0a463347f95ded5cd88a3dd3aaa1ceecaeee362194bc30f3e386
+    sha256: 610e739f370ba1613530b31a5967b06eb4ecc271ee43ff2fcce60612549fb891
 
 build:
   number: 0
