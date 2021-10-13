@@ -98,6 +98,8 @@ about:
   license_family: BSD
   license_file: tcl{{ version }}/license.terms
   summary: A dynamic programming language with GUI support.  Bundles Tcl and Tk.
+  dev_url: https://core.tcl-lang.org/tk/home
+  doc_url: https://www.tcl.tk/man/tcl8.6/index.html
 
 extra:
   recipe-maintainers:
