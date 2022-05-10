@@ -12,8 +12,6 @@ source:
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tk{{ version }}-src.tar.gz
     folder: tk{{ version }}
     sha256: 12395c1f3fcb6bed2938689f797ea3cdf41ed5cb6c4766eec8ac949560310630
-    patches:
-      module_scope.patch
 
 build:
   number: 0
