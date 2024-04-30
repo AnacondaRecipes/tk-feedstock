@@ -1,4 +1,4 @@
-{% set version = "8.6.12" %}
+{% set version = "8.6.14" %}
 {% set maj_min = ".".join(version.split(".")[:2]) %}
 
 package:
@@ -8,13 +8,13 @@ package:
 source:
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tcl{{ version }}-src.tar.gz
     folder: tcl{{ version }}
-    sha256: 26c995dd0f167e48b11961d891ee555f680c175f7173ff8cb829f4ebcde4c1a6
+    sha256: 5880225babf7954c58d4fb0f5cf6279104ce1cd6aa9b71e9a6322540e1c4de66
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tk{{ version }}-src.tar.gz
     folder: tk{{ version }}
-    sha256: 12395c1f3fcb6bed2938689f797ea3cdf41ed5cb6c4766eec8ac949560310630
+    sha256: 8ffdb720f47a6ca6107eac2dd877e30b0ef7fac14f3a84ebbd0b3612cee41a94
 
 build:
-  number: 1
+  number: 0
   detect_binary_files_with_prefix: true
   run_exports:
     # pin to major.minor because library names have that info in them
