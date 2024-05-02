@@ -9,6 +9,8 @@ source:
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tcl{{ version }}-src.tar.gz
     folder: tcl{{ version }}
     sha256: 5880225babf7954c58d4fb0f5cf6279104ce1cd6aa9b71e9a6322540e1c4de66
+    patches:                          # [win]
+      - 0002-win-unvendor-zlib.patch  # [win]
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tk{{ version }}-src.tar.gz
     folder: tk{{ version }}
     sha256: 8ffdb720f47a6ca6107eac2dd877e30b0ef7fac14f3a84ebbd0b3612cee41a94
@@ -33,8 +35,11 @@ requirements:
     - {{ cdt('libxau') }}                # [linux]
     - make                               # [linux]
     - patch                              # [osx and x86_64]
+    - m2-patch                           # [win]
   host:
-    - zlib  # [unix]
+    - zlib {{ zlib }}
+  run:
+    - zlib # pin through run_exports
 
 test:
 
