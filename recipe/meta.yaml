@@ -29,15 +29,16 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    - {{ cdt('libx11-devel') }}          # [linux]
-    - {{ cdt('libxcb') }}                # [linux]
-    - {{ cdt('libxau') }}                # [linux]
+    # TODO: map CDT libxau to new X11 package
+    # - { cdt('libxau') }
     - make                               # [linux]
     - patch                              # [osx and x86_64]
     - m2-patch                           # [win]
   host:
     - zlib {{ zlib }}
+    - xorg-xorgproto
+    - xorg-libx11
+    - libxcb
   run:
     - zlib # pin through run_exports
 
