@@ -34,10 +34,7 @@ requirements:
     - m2-patch                           # [win]
   host:
     - zlib {{ zlib }}
-    - xorg-xorgproto
     - xorg-libx11  # [linux]
-    - xorg-libxau
-    - libxcb  # [linux]
   run:
     - zlib # pin through run_exports
 
