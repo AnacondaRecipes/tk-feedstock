@@ -18,7 +18,7 @@ source:
       - 0001-osx-lt-11.patch  # [osx and x86_64]
 
 build:
-  number: 0
+  number: 1
   detect_binary_files_with_prefix: true
   run_exports:
     # pin to major.minor because library names have that info in them
@@ -29,15 +29,12 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
-    - {{ cdt('libx11-devel') }}          # [linux]
-    - {{ cdt('libxcb') }}                # [linux]
-    - {{ cdt('libxau') }}                # [linux]
     - make                               # [linux]
     - patch                              # [osx and x86_64]
     - m2-patch                           # [win]
   host:
     - zlib {{ zlib }}
+    - xorg-libx11  # [linux]
   run:
     - zlib # pin through run_exports
 
