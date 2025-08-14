@@ -1,4 +1,4 @@
-{% set version = "8.6.14" %}
+{% set version = "8.6.15" %}
 {% set maj_min = ".".join(version.split(".")[:2]) %}
 
 package:
@@ -8,12 +8,12 @@ package:
 source:
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tcl{{ version }}-src.tar.gz
     folder: tcl{{ version }}
-    sha256: 5880225babf7954c58d4fb0f5cf6279104ce1cd6aa9b71e9a6322540e1c4de66
+    sha256: 861e159753f2e2fbd6ec1484103715b0be56be3357522b858d3cbb5f893ffef1
     patches:                          # [win]
       - 0002-win-unvendor-zlib.patch  # [win]
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tk{{ version }}-src.tar.gz
     folder: tk{{ version }}
-    sha256: 8ffdb720f47a6ca6107eac2dd877e30b0ef7fac14f3a84ebbd0b3612cee41a94
+    sha256: 550969f35379f952b3020f3ab7b9dd5bfd11c1ef7c9b7c6a75f5c49aca793fec
     patches:                  # [osx and x86_64]
       - 0001-osx-lt-11.patch  # [osx and x86_64]
 
@@ -28,6 +28,7 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - make                               # [linux]
     - patch                              # [osx and x86_64]
@@ -39,10 +40,8 @@ requirements:
     - zlib # pin through run_exports
 
 test:
-
   files:
     - hello.tcl
-
   commands:
     # Check for binaries.
     {% for ver_suffix in ["", maj_min] %}
@@ -94,7 +93,7 @@ test:
     - wish{{ maj_min.replace(".", "") }}t hello.tcl      # [win]
 
 about:
-  home: https://www.tcl.tk/
+  home: https://www.tcl.tk
   license: TCL
   license_family: BSD
   license_file: tcl{{ version }}/license.terms
