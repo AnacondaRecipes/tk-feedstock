@@ -10,12 +10,12 @@ source:
     folder: tcl{{ version }}
     sha256: 861e159753f2e2fbd6ec1484103715b0be56be3357522b858d3cbb5f893ffef1
     patches:                          # [win]
-      - 0002-win-unvendor-zlib.patch  # [win]
+      - patches/0002-win-unvendor-zlib.patch  # [win]
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tk{{ version }}-src.tar.gz
     folder: tk{{ version }}
     sha256: 550969f35379f952b3020f3ab7b9dd5bfd11c1ef7c9b7c6a75f5c49aca793fec
     patches:                  # [osx and x86_64]
-      - 0001-osx-lt-11.patch  # [osx and x86_64]
+      - patches/0001-osx-lt-11.patch  # [osx and x86_64]
 
 build:
   number: 1
@@ -35,7 +35,7 @@ requirements:
     - m2-patch                           # [win]
   host:
     - zlib {{ zlib }}
-    - xorg-libx11  # [linux]
+    - xorg-libx11 1.8.12  # [linux]
   run:
     - zlib # pin through run_exports
 
