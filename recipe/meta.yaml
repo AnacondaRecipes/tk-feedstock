@@ -31,8 +31,6 @@ requirements:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - make                               # [linux]
-    - patch                              # [osx and x86_64]
-    - msys2-patch                        # [win]
   host:
     - zlib {{ zlib }}
     - xorg-libx11 1.8.12  # [linux]
