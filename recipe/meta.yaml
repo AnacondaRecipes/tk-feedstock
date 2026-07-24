@@ -1,4 +1,4 @@
-{% set version = "8.6.15" %}
+{% set version = "9.0.4" %}
 {% set maj_min = ".".join(version.split(".")[:2]) %}
 
 package:
@@ -8,12 +8,12 @@ package:
 source:
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tcl{{ version }}-src.tar.gz
     folder: tcl{{ version }}
-    sha256: 861e159753f2e2fbd6ec1484103715b0be56be3357522b858d3cbb5f893ffef1
+    sha256: d0aed49230bc02a65c1e0229e65f34590a4b037ec40d546f32573b467f7551ea
     patches:                          # [win]
       - patches/0002-win-unvendor-zlib.patch  # [win]
   - url: https://altushost-swe.dl.sourceforge.net/project/tcl/Tcl/{{ version }}/tk{{ version }}-src.tar.gz
     folder: tk{{ version }}
-    sha256: 550969f35379f952b3020f3ab7b9dd5bfd11c1ef7c9b7c6a75f5c49aca793fec
+    sha256: d7a146d2917eb8b5cc95276dbf0e3d03c7464d2b19c1675357857c989301dbb4
     patches:                  # [osx and x86_64]
       - patches/0001-osx-lt-11.patch  # [osx and x86_64]
 
@@ -32,6 +32,9 @@ requirements:
     - {{ compiler('c') }}
     - make                               # [linux]
   host:
+    - sqlite {{ sqlite }}
+    - tzdata
+    - minizip
     - zlib {{ zlib }}
     - xorg-libx11 1.8.12  # [linux]
   run:
@@ -76,11 +79,15 @@ test:
     {% for each_tcl_tk_lib in tcl_tk_libs %}
     - test -f "${PREFIX}/lib/lib{{ each_tcl_tk_lib }}{{ maj_min }}.dylib"                                        # [osx]
     - test -f "${PREFIX}/lib/lib{{ each_tcl_tk_lib }}{{ maj_min }}.so"                                           # [linux]
-    - test -f "${PREFIX}/lib/lib{{ each_tcl_tk_lib }}stub{{ maj_min }}.a"                                        # [unix]
+    #- test -f "${PREFIX}/lib/lib{{ each_tcl_tk_lib }}stub{{ maj_min }}.a"                                        # [unix]
     - if not exist %LIBRARY_PREFIX%\\lib\\{{ each_tcl_tk_lib }}{{ maj_min.replace(".", "") }}t.lib exit 1         # [win]
     - if not exist %LIBRARY_PREFIX%\\bin\\{{ each_tcl_tk_lib }}{{ maj_min.replace(".", "") }}t.dll exit 1         # [win]
     - if not exist %LIBRARY_PREFIX%\\lib\\{{ each_tcl_tk_lib }}stub{{ maj_min.replace(".", "") }}.lib exit 1     # [win]
     {% endfor %}
+    # in 9.0
+    # libtclstub.a
+    # libtcl9tk9.0.so
+    
 
     # Check commands work and run a simple program.
     - tclsh hello.tcl

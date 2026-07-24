@@ -7,7 +7,28 @@ if [[ ${ARCH} == 64 || ${ARCH} == s390x ]]; then
     ARCH_FLAG="--enable-64bit"
 fi
 
+# configure checks for zip
+ln -s ${PREFIX}/bin/minizip ${PREFIX}/bin/zip
+
 pushd tcl${PKG_VERSION}/unix
+
+case "${target_platform}" in
+osx-*)
+    # An exported DYLD_* won't get inherited by SIP protected
+    # binaries: /usr/bin/env, /bin/bash, ...
+    export DYLD_FALLBACK_LIBRARY_PATH=${PWD}${DYLD_FALLBACK_LIBRARY_PATH:+:$DYLD_FALLBACK_LIBRARY_PATH}
+
+    # configure: error: .../bin/tclsh is not a Tcl 9 tclsh.
+    export TCLSH_NATIVE=$(type -p tclsh)
+    ;;
+*)
+    export LD_LIBRARY_PATH=${PWD}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+    ;;
+esac
+
+# checking for tclsh... /home/rocky/.conda/envs/build/bin/tclsh
+PATH=$PATH:$PWD
+
   # autoreconf -vfi
   ./configure  --prefix="${PREFIX}"  \
                --host=${HOST}        \
