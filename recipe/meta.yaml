@@ -39,7 +39,6 @@ requirements:
     - {{ compiler('c') }}
     - make                               # [linux]
   host:
-    - sqlite {{ sqlite }}
     - tzdata
     - zlib {{ zlib }}
     - xorg-libx11 1.8.12  # [linux]
