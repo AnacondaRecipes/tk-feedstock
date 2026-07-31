@@ -85,7 +85,6 @@ test:
     {% for each_tcl_tk_lib in tcl_tk_libs %}
     - test -f "${PREFIX}/lib/lib{{ each_tcl_tk_lib }}stub.a"                                    # [unix]
     - if not exist %LIBRARY_PREFIX%\\lib\\{{ each_tcl_tk_lib }}stub.lib exit 1                  # [win]
-    - if not exist %LIBRARY_PREFIX%\\lib\\{{ each_tcl_tk_lib }}{{ maj_min_no_dot }}.lib exit 1  # [win]
     {% endfor %}
     # in 9.0 it is tcl9.0 and tcl9tk9.0
     - test -f "${PREFIX}/lib/libtcl{{ maj_min }}.dylib"                                  # [osx]
@@ -101,7 +100,7 @@ test:
     - tclsh{{ maj_min_no_dot }} hello.tcl  # [win]
     - wish hello.tcl
     - wish{{ maj_min }} hello.tcl          # [unix]
-    - wish{{ maj_min_no_dot }}t hello.tcl  # [win]
+    - wish{{ maj_min_no_dot }} hello.tcl  # [win]
 
 about:
   home: https://www.tcl.tk
