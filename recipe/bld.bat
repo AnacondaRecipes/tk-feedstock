@@ -22,7 +22,7 @@ pushd tcl%PKG_VERSION%\win
 nmake nmakehlp.exe
 nmake -f makefile.vc INSTALLDIR=%LIBRARY_PREFIX% MACHINE=%MACHINE% OPTS=noembed release
 if %ERRORLEVEL% GTR 0 exit 1
-nmake -f makefile.vc INSTALLDIR=%LIBRARY_PREFIX% MACHINE=%MACHINE% install
+nmake -f makefile.vc INSTALLDIR=%LIBRARY_PREFIX% MACHINE=%MACHINE% OPTS=noembed install
 if %ERRORLEVEL% GTR 0 exit 1
 popd
 
@@ -37,7 +37,7 @@ pushd tk%PKG_VERSION%\win
 nmake nmakehlp.exe
 nmake -f makefile.vc INSTALLDIR=%LIBRARY_PREFIX% MACHINE=%MACHINE% TCLDIR=..\..\tcl%PKG_VERSION% OPTS=noembed release
 if %ERRORLEVEL% GTR 0 exit 1
-nmake -f makefile.vc INSTALLDIR=%LIBRARY_PREFIX% MACHINE=%MACHINE% TCLDIR=..\..\tcl%PKG_VERSION% install
+nmake -f makefile.vc INSTALLDIR=%LIBRARY_PREFIX% MACHINE=%MACHINE% TCLDIR=..\..\tcl%PKG_VERSION% OPTS=noembed install
 if %ERRORLEVEL% GTR 0 exit 1
 
 REM NB Tcl >=9.0 no longer uses the t for threading suffix:
