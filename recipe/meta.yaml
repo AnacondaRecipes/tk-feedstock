@@ -41,7 +41,7 @@ requirements:
   host:
     - tzdata
     - zlib {{ zlib }}
-    - xorg-libx11 1.8.12  # [linux]
+    - xorg-libx11 {{ xorg_libx11 }}  # [linux]
   run:
     - zlib # pin through run_exports
 
